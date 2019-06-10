@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>Count the number of States visited</h3>
+
+<form name="StatesForm" >
+      <h3>Select the States you have travelled to... most Americans have visited of total 8 States</h3>
+      <h4> Top 5 visited  are noted with an asterisk </h4>
+   
+      <input type="radio" name="q1" value="AL" id="q1">Alabama <br>
+      <input type="radio" name="q2" value="AK" id="q2">Alaska<br>
+      <input type="radio" name="q3" value="AL" id="q3">Arizona<br>
+      <input type="radio" name="q4" value="AK" id="q4">Arkansas<br>
+      <input type="radio" name="q5" value="CA" id="q5">California *<br>
+      <input type="radio" name="q6" value="CO" id="q6">Colorado *<br>
+      <input type="radio" name="q12" value="AL" id="q12">Connecticut<br>
+      <input type="radio" name="q7" value="AK" id="q7">Delaware<br>
+      <input type="radio" name="q8" value="FL" id="q8">Florida *<br>
+      <input type="radio" name="q47" value="AL" id="q47">Georgia<br>
+      <input type="radio" name="q9" value="AK" id="q9">Hawaii<br>
+      <input type="radio" name="q10" value="AL" id="q10">Idaho<br>
+      <input type="radio" name="q48" value="AL" id="q48">Illinois<br>
+      <input type="radio" name="q11" value="AL" id="q11">Indiana<br>
+      <input type="radio" name="q13" value="AL" id="q13">Iowa<br>
+      <input type="radio" name="q14" value="AK" id="q14">Kansas<br>
+      <input type="radio" name="q15" value="AL" id="q15">Kentucky<br>
+      <input type="radio" name="q16" value="AL" id="q16">Louisiana<br>
+      <input type="radio" name="q17" value="AK" id="q17">Maine<br>
+
+      <input type="radio" name="q49" value="AK" id="q49">Maryland<br>
+
+      <input type="radio" name="q18" value="AL" id="q18">Massachussetts<br>
+      <input type="radio" name="q19" value="AK" id="q19">Michigan<br>
+      <input type="radio" name="q20" value="AL" id="q20">Minnesota<br>
+      <input type="radio" name="q21" value="AL" id="q21">Mississippi<br>
+      <input type="radio" name="q22" value="AK" id="q22">Missouri<br>
+      <input type="radio" name="q23" value="AL" id="q23">Montana<br>
+      <input type="radio" name="q24" value="AK" id="q24">Nebraska<br>
+      <input type="radio" name="q25" value="AL" id="q25">Nevada<br>
+      <input type="radio" name="q26" value="AL" id="q26">New Hampshire<br>
+      <input type="radio" name="q27" value="AL" id="q27">New Jersey<br>
+      <input type="radio" name="q28" value="AL" id="q28">New Mexico<br>
+      <input type="radio" name="q29" value="NY" id="q29">New York *<br>
+      <input type="radio" name="q30" value="AL" id="q30">North Carolina<br>
+        <input type="radio" name="q31" value="AL" id="q31">North Dakota<br>
+          <input type="radio" name="q32" value="AL" id="q32">Ohio<br>
+            <input type="radio" name="q33" value="AL" id="q33">Oklahoma<br>
+            <input type="radio" name="q34" value="AL" id="q34">Oregon<br>
+            <input type="radio" name="q35" value="AL" id="q35">Pennsylvania<br>
+            <input type="radio" name="q36" value="AL" id="q36">Rhode Island<br>
+                <input type="radio" name="q37" value="AL" id="q37">South Corolina<br>
+                <input type="radio" name="q50" value="AK" id="q50">South Dakota<br>
+                <input type="radio" name="q38" value="AL" id="q38">Tennessee<br>
+                <input type="radio" name="q39" value="AL" id="q39">Texas<br>
+                <input type="radio" name="q40" value="AL" id="q40">Utah<br>
+                <input type="radio" name="q41" value="VT" id="q41">Vermont *<br>
+                <input type="radio" name="q42" value="AL" id="q42">Virginia<br>
+                <input type="radio" name="q43" value="AL" id="q43">Washinton<br>
+                <input type="radio" name="q44" value="AL" id="q44">West Virginia<br>
+                <input type="radio" name="q45" value="AL" id="q45">Winsconsin<br>
+                <input type="radio" name="q46" value="AL" id="q46">Wyoming<br>
+
+
+
+   <br><br>
+      <input type="submit" value="Submit Answers"> <button onclick="restart()" class="restart">Start Over</button>
+    </form>
+
+
+ <div id="results" > <br> </div>
+
+
+<script>
+  	var score = 0;
+    var top5 = ["CA", "CO", "FL", "NY", "VT"] ;
+    var top5score = 0;
+
+	var formElement = document.forms['StatesForm'];
+
+	formElement.onsubmit = function submitAnswers() {
+	
+		for ( i=1; i <= 50; i=i+1) {
+		if(document.getElementById("q"+i).checked) {
+			score = score + 1;  
+
+     var x = document.getElementById("q"+i).value;
+
+         for  (ii=0; ii<=4; ii=ii+1 ){
+              if (x  === top5[ii]  ) {
+              top5score = top5score + 1; 
+            }
+         }
+
+    		}
+         }
+		
+     console.log(score, top5score, x);
+
+
+	var results = document.getElementById('results');
+
+    if (score > 8 ){
+      results.innerHTML ='<h3>You have visited <span>'+score+'</span> states - more than the average - you have visited <span>'+ top5score+ '</span> of the top 5 </h3>';
+
+    }
+      else if (score === 8 ) {
+          results.innerHTML ='<h3>You have visited <span>'+score+'</span> states - equal to the average - you have visited <span>'+ top5score+ '</span> of the top 5 </h3>';
+      }
+    else {
+	  	results.innerHTML ='<h3>You have visited <span>'+score+'</span> states - less than the average - you have visited <span>'+ top5score+ '</span> of the top 5 </h3>';
+    }
+          
+        score = 0 ;
+        top5score = 0;
+	  	return false;
+	}
+
+  function restart() {
+    location.reload(true);
+  }
+
+
+</script>
+
+</body>
+</html>
+
